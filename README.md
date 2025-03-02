@@ -7,7 +7,7 @@ Let's keep planning. That way the code will have fewer logical errors. I come fr
 
 Game class
 - instance variables:
--- who's turn?
+-- current_player
 -- game over?
 -- winner? 
 - instance methods: 
@@ -28,18 +28,15 @@ GameBoard class (tracks board state)
 - instance variables: 
 
 -- board state 
---- (board positions)
---- Lefttop, Centertop, Righttop
---- LeftCenter, Centercenter, Rightcenter,
---- Leftbottom, Centerbottom, Rightbottom
---- Or should we number these 0 to 8 for each box in the grid?
---- what other board states do we need to track?
+--- board positions: 0-8 
+--- board positions filled and by what symbol
 - instance methods:
 -- initialize variables
--- check board state (full, empty, winner)
+-- check board state (gameover? if full, empty, winner)
 -- set a board position with a game piece (X or O)
 -- checks if player's choice is a valid move?
 -- gets the board's state to help Game class display board
+-- display game board
 
 Player class
 - instance variables:
@@ -47,6 +44,21 @@ Player class
 -- player piece (X or O) 
 - instance methods: 
 -- initialize variables
--- pick a position to place a piece
+-- get player input
+--- verify input is valid, including error handling for invalid input
+--- coordinate with GameBoard class to record a position to place a symbol
 
- 
+ main.rb
+- instantiate new Game object
+- instantiate new GameBoard object
+- instantiate 2 new Player objects (variables, player1 and player2)
+- create a while loop checking the gameboard's state for gameover?
+-- if not game over and Gameboard is empty, request Game object to determine who will go first
+-- Game asks Player object for input
+-- GameBoard updates state based on Player's input
+-- Game checks if winner 
+-- GameBoard displays state of the game board positions
+-- repeat until a winner
+- when there's a winner
+-- display which player won
+-- display the gameboard   
