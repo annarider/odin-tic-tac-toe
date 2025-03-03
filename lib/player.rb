@@ -8,10 +8,17 @@ class Player
 
   def choose
     position = nil
-    until position.between?(0, 8)
-      puts "It's your turn. Choose your position between 0 and 8."
+    loop do
+      puts "#{name}, it's your turn. Choose your position between 0 and 8."
       position = gets.chomp.to_i
+      break if position.between?(0, 8)
     end
     position
   end
 end
+
+player1 = Player.new('A', 'X')
+player2 = Player.new('B', 'O')
+p player1, player2
+player1.choose
+player2.choose
