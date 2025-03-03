@@ -22,12 +22,16 @@ class GameBoard
   def game_over?
   end
 
+  def empty?
+    board.all? { |element| element == ' ' }
+  end 
+
   def full?
-    board.all? { |element| element == "X" || element == "O" }
+    board.all? { |element| element == 'X' || element == 'O' }
   end   
 
   def test_full
-    board.fill("O")
+    board.fill('O')
   end
 
   def winner?
@@ -51,8 +55,10 @@ end
 
 # board = ['O', 'O', 'O', ' ', 'X', ' ', ' ', ' ', 'X']
 board = GameBoard.new
+puts "empty: #{board.empty?}"
 board.test_full
-board.set_symbol(1, "X")
+board.set_symbol(1, 'X')
 board.show_board
 puts "full: #{board.full?}"
 puts "winner: #{board.winner?}"
+puts "empty: #{board.empty?}"
