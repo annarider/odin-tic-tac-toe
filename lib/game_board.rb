@@ -12,19 +12,9 @@ class GameBoard
   def show_board
     puts  <<~TEXT 
       #{board[0]} | #{board[1]} | #{board[2]} 
-      ---------------------------
+      ----------
       #{board[3]} | #{board[4]} | #{board[5]}
-      ---------------------------
-      #{board[6]} | #{board[7]} | #{board[8]}
-      TEXT
-  end
-
-  def show_board
-    puts  <<~TEXT 
-      #{board[0]} | #{board[1]} | #{board[2]} 
-      ---------------------------
-      #{board[3]} | #{board[4]} | #{board[5]}
-      ---------------------------
+      ----------
       #{board[6]} | #{board[7]} | #{board[8]}
       TEXT
   end
@@ -61,7 +51,7 @@ end
 
 # board = ['O', 'O', 'O', ' ', 'X', ' ', ' ', ' ', 'X']
 board = GameBoard.new
-# board.test_full
+board.test_full
 board.set_symbol(1, "X")
 board.show_board
 puts "full: #{board.full?}"
