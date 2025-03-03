@@ -10,10 +10,10 @@ class Player
     position = nil
     loop do
       puts "#{name}, it's your turn. Choose your position between 0 and 8."
-      position = gets.chomp.to_i
-      break if position.between?(0, 8)
+      position = Integer(gets.chomp) rescue false
+      break if (0..8).include?(position) 
     end
-    position
+    puts "position: #{position}"
   end
 end
 
