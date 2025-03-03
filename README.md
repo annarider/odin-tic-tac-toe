@@ -41,10 +41,11 @@ GameBoard class (tracks board state)
 --- board positions filled and by what symbol
 - instance methods:
 -- initialize variables
--- check board state (gameover? if full, empty, winner)
--- set a board position with a game piece (X or O)
--- checks if player's choice is a valid move? (position is available?)
 -- gets the board's state to help Game class display board
+-- set a board position with a game piece (X or O)
+-- check board state for gameover? (if full, empty, winner)
+-- checks for winner, empty, full states 
+-- checks if player's choice is a valid move? (position is available?)
 
 Player class
 - instance variables:
@@ -59,3 +60,11 @@ Player class
 
  main.rb
 - instantiate new Game object
+
+
+
+0 | 1 | 2
+----------
+3 | 4 | 5
+----------
+6 | 7 | 8
