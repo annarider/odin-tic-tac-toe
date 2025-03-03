@@ -53,6 +53,16 @@ class GameBoard
     end
     false 
   end
+
+  def valid_move?(position, symbol)
+    if symbol != 'X' && symbol != 'O'
+      false
+    elsif board[position] == ' '
+      true
+    else 
+      false
+    end
+  end
 end
 
 
@@ -62,6 +72,8 @@ board = GameBoard.new
 puts "empty: #{board.empty?}"
 # board.test_full
 board.set_symbol(1, 'X')
+puts "valid: #{board.valid_move?(1,'O')}"
+puts "valid: #{board.valid_move?(2,'O')}"
 board.show_board
 puts "full: #{board.full?}"
 puts "winner: #{board.winner?}"
