@@ -20,10 +20,7 @@ class GameBoard
   end
 
   def game_over?
-    if winner? || full?
-      true
-    end
-    false
+    winner? || full?
   end
 
   def empty?
