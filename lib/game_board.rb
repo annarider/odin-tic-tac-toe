@@ -36,6 +36,10 @@ class GameBoard
   end
 
   def winner?
+    winning_symbol != nil
+  end
+
+  def winning_symbol
     winning_combinations = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], # rows
       [0, 3, 6], [1, 4, 7], [2, 5, 8], # columns
@@ -46,10 +50,10 @@ class GameBoard
       if first != ' ' && 
           first == board[combo[1]] && 
           first == board[combo[2]] 
-        return true
+        return first
       end 
     end
-    false 
+    nil
   end
 
   def valid_move?(position, symbol)
@@ -68,6 +72,6 @@ puts "valid: #{board.valid_move?(1,'O')}"
 puts "valid: #{board.valid_move?(2,'O')}"
 board.show_board
 puts "full: #{board.full?}"
-puts "winner: #{board.winner?}"
+puts "winner: #{board.winner?} and symbol: #{board.winning_symbol}"
 puts "empty: #{board.empty?}"
 puts "gameover: #{board.game_over?}"
