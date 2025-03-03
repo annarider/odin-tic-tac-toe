@@ -42,9 +42,10 @@ class GameBoard
       [0, 4, 8], [2, 4, 6] # diagonals
     ]
     winning_combinations.each do |combo| 
-      if combo.all? { |element| 
-          board[element] == board[combo[0]] && 
-          board[element] != ' ' }
+      first = board[combo[0]]
+      if first != ' ' && 
+          first == board[combo[1]] && 
+          first == board[combo[2]] 
         return true
       end 
     end
@@ -52,13 +53,7 @@ class GameBoard
   end
 
   def valid_move?(position, symbol)
-    if symbol != 'X' && symbol != 'O'
-      false
-    elsif board[position] == ' '
-      true
-    else 
-      false
-    end
+    position.between?(0, 8) && board[position] == ' '
   end
 end
 
@@ -67,7 +62,7 @@ end
 # board = ['O', 'O', 'O', ' ', 'X', ' ', ' ', ' ', 'X']
 board = GameBoard.new
 puts "empty: #{board.empty?}"
-# board.test_full
+board.test_full
 board.set_symbol(1, 'X')
 puts "valid: #{board.valid_move?(1,'O')}"
 puts "valid: #{board.valid_move?(2,'O')}"
