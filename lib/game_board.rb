@@ -19,6 +19,27 @@ class GameBoard
       TEXT
   end
 
+  def show_board
+    puts  <<~TEXT 
+      #{board[0]} | #{board[1]} | #{board[2]} 
+      ---------------------------
+      #{board[3]} | #{board[4]} | #{board[5]}
+      ---------------------------
+      #{board[6]} | #{board[7]} | #{board[8]}
+      TEXT
+  end
+
+  def game_over?
+  end
+
+  def full?
+    board.all? { |element| element == "X" || element == "O" }
+  end   
+
+  def test_full
+    board.fill("X")
+  end
+  
 end
 
 
