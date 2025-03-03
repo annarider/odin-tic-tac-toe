@@ -20,6 +20,10 @@ class GameBoard
   end
 
   def game_over?
+    if winner? || full?
+      true
+    end
+    false
   end
 
   def empty?
@@ -56,9 +60,10 @@ end
 # board = ['O', 'O', 'O', ' ', 'X', ' ', ' ', ' ', 'X']
 board = GameBoard.new
 puts "empty: #{board.empty?}"
-board.test_full
+# board.test_full
 board.set_symbol(1, 'X')
 board.show_board
 puts "full: #{board.full?}"
 puts "winner: #{board.winner?}"
 puts "empty: #{board.empty?}"
+puts "gameover: #{board.game_over?}"
