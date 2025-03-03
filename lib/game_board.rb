@@ -37,16 +37,32 @@ class GameBoard
   end   
 
   def test_full
-    board.fill("X")
+    board.fill("O")
   end
-  
+
+  def winner?
+    winning_combinations = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], # rows
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], # columns
+      [0, 4, 8], [2, 4, 6] # diagonals
+    ]
+    winning_combinations.each do |combo| 
+      if combo.all? { |element| 
+          board[element] == board[combo[0]] && 
+          board[element] != ' ' }
+        return true
+      end 
+    end
+    false 
+  end
 end
 
 
 
 # board = ['O', 'O', 'O', ' ', 'X', ' ', ' ', ' ', 'X']
 board = GameBoard.new
+# board.test_full
 board.set_symbol(1, "X")
-board.test_full
 board.show_board
-puts board.full?
+puts "full: #{board.full?}"
+puts "winner: #{board.winner?}"

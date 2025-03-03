@@ -43,8 +43,8 @@ GameBoard class (tracks board state)
 -- initialize variables
 -- gets the board's state to help Game class display board
 -- set a board position with a game piece (X or O)
--- check board state for gameover? (if full, empty, winner)
--- checks for winner, empty, full states 
+-- check board state for gameover? (if empty, winner, full)
+-- checks for empty, then winner, then full states 
 -- checks if player's choice is a valid move? (position is available?)
 
 Player class
