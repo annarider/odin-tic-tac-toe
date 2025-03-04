@@ -17,8 +17,8 @@ class Player
   end
 end
 
-player1 = Player.new('A', 'X')
-player2 = Player.new('B', 'O')
-p player1, player2
-player1.choose
-player2.choose
+# player1 = Player.new('A', 'X')
+# player2 = Player.new('B', 'O')
+# p player1, player2
+# player1.choose
+# player2.choose
