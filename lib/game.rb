@@ -42,7 +42,6 @@ class Game
   
   def play_turn
     position = current_player.choose
-    puts "position: #{position}, current: #{current_player.name}, symbol: #{current_player.symbol}"
     until board.valid_move?(position, current_player.symbol)
       position = current_player.choose
     end
