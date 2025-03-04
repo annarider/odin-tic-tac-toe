@@ -37,6 +37,7 @@ class Game
       @current_player = reverse_turn
     end
     announce_end
+    play_again?
   end
   
   def play_turn
@@ -56,6 +57,14 @@ class Game
       puts "Game over. The winner was #{current_player.name}."
     elsif board.full?
       puts "Game over. No winner."
+    end
+  end
+
+  def play_again?
+    puts 'Play again? Enter y for yes (y): '
+    if gets.chomp == 'y'
+      play
+      board.reset
     end
   end
 end
