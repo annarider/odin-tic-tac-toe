@@ -63,8 +63,9 @@ class Game
   def play_again?
     puts 'Play again? Enter y for yes (y): '
     if gets.chomp == 'y'
+      @board = GameBoard.new
+      @current_player = play_order
       play
-      board.reset
     end
   end
 end
