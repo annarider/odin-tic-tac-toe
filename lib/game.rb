@@ -38,6 +38,7 @@ class Game
       puts "current turn: #{current_player.name}"
       break if board.game_over? 
     end
+    announce_end
   end
   
   def play_turn
@@ -50,5 +51,13 @@ class Game
 
   def reverse_turn
     current_player == player1 ? player2 : player1
+  end
+
+  def announce_end
+    if board.winner?
+      puts "Game over. The winner was #{current_player.names}."
+    elsif board.full?
+      puts "Game over. No winner."
+    end
   end
 end
