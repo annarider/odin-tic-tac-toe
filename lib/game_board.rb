@@ -23,17 +23,9 @@ class GameBoard
     winner? || full?
   end
 
-  def empty?
-    board.all? { |element| element == ' ' }
-  end 
-
   def full?
     board.all? { |element| element == 'X' || element == 'O' }
   end   
-
-  def test_full
-    board.fill('O')
-  end
 
   def winner?
     winning_symbol != nil
@@ -60,18 +52,3 @@ class GameBoard
     position.between?(0, 8) && board[position] == ' '
   end
 end
-
-
-
-# board = ['O', 'O', 'O', ' ', 'X', ' ', ' ', ' ', 'X']
-# board = GameBoard.new
-# puts "empty: #{board.empty?}"
-# board.test_full
-# board.set_symbol(1, 'X')
-# puts "valid: #{board.valid_move?(1,'O')}"
-# puts "valid: #{board.valid_move?(2,'O')}"
-# board.show_board
-# puts "full: #{board.full?}"
-# puts "winner: #{board.winner?} and symbol: #{board.winning_symbol}"
-# puts "empty: #{board.empty?}"
-# puts "gameover: #{board.game_over?}"
