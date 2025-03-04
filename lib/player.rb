@@ -9,7 +9,7 @@ class Player
   def choose
     position = nil
     loop do
-      puts "#{name}, it's your turn. Choose your position between 0 and 8."
+      puts "#{name}, it's your turn with #{symbol}. Choose your position between 0 and 8."
       position = Integer(gets.chomp) rescue false
       if (0..8).include?(position)
         break
