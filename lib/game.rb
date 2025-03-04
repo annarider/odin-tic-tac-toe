@@ -29,5 +29,25 @@ class Game
     ['X', 'O'].shuffle
   end
 
+  def play
+    loop do
+      play_turn
+      board.show_board
+      current_player = reverse_turn
+      break if board.game_over? 
+    end
+  end
+  
+  def play_turn
+    position = current_player.choose
+    puts "position: #{position}, current: #{current_player.name}, symbol: #{current_player.symbol}"
+    until board.valid_move?(position, current_player.symbol)
+      position = current_player.choose
+    end
+    board.set_symbol(position, current_player.symbol)
+  end
 
+  def reverse_turn
+    current_player == player1 ? player2 : player1
+  end
 end
