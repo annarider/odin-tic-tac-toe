@@ -55,7 +55,7 @@ class Game
 
   def announce_end
     if board.winner?
-      puts "Game over. The winner was #{current_player.names}."
+      puts "Game over. The winner was #{current_player.name}."
     elsif board.full?
       puts "Game over. No winner."
     end
