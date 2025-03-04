@@ -33,7 +33,9 @@ class Game
     loop do
       play_turn
       board.show_board
-      current_player = reverse_turn
+      puts "current turn: #{current_player.name}"
+      @current_player = reverse_turn
+      puts "current turn: #{current_player.name}"
       break if board.game_over? 
     end
   end
