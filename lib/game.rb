@@ -6,19 +6,28 @@ class Game
 
   def initialize
     @board = GameBoard.new
-    puts "What's the first player's name?"
-    name1 = gets.chomp
-    symbols = ['X', 'O'].shuffle
-    @player1 = Player.new(name1, symbols[0])
-    puts "What's the second player's name?"
-    name2 = gets.chomp
-    @player2 = Player.new(name2, symbols[1])
+    create_players
     @current_player = play_order
     puts "#{current_player.name} is going first and is assigned #{current_player.symbol}."
   end
-
+  
+  def create_players
+    puts "What's the first player's name?"
+    name1 = gets.chomp
+    puts "What's the second player's name?"
+    name2 = gets.chomp
+    symbols = randomize_symbols
+    @player1 = Player.new(name1, symbols[0])
+    @player2 = Player.new(name2, symbols[1])
+  end
+  
   def play_order
     [player1, player2].sample
   end
+  
+  def randomize_symbols
+    ['X', 'O'].shuffle
+  end
+
 
 end
