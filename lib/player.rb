@@ -14,6 +14,12 @@ class Player
       break if (0..8).include?(position) 
     end
     puts "position: #{position}"
+    position
+  end
+
+  def choose_again
+    puts "#{name}, invalid move. Choose your position again."
+    choose
   end
 end
 
