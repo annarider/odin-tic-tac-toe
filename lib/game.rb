@@ -45,6 +45,7 @@ class Game
   def play_turn
     position = current_player.choose
     until board.valid_move?(position, current_player.symbol)
+      current_player.choose_again
       position = current_player.choose
     end
     board.set_symbol(position, current_player.symbol)

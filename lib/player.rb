@@ -9,20 +9,18 @@ class Player
   def choose
     position = nil
     loop do
-      puts "#{name}, it's your turn with #{symbol}. Choose your position between 0 and 8."
-      position = Integer(gets.chomp) rescue false
+      puts "#{name}, it's your turn with #{symbol}. Choose your position between 1 and 9."
+      position = Integer(gets.chomp) - 1 rescue false
       if (0..8).include?(position)
         break
       else 
-        choose_again # TODO declare invalid move
+        choose_again
       end
     end
-    puts "#{name} chose position: #{position}."
+    puts "#{name} chose position: #{position + 1}."
     position
   end
 
-  private
-  
   def choose_again
     puts "#{name}, invalid move. Choose your position again."
   end
