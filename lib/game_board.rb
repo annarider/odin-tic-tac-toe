@@ -1,4 +1,10 @@
 class GameBoard
+  WINNING_COMBINATIONS = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], # rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], # columns
+    [0, 4, 8], [2, 4, 6] # diagonals
+  ]
+
   attr_accessor :board
 
   def initialize
@@ -31,13 +37,14 @@ class GameBoard
     winning_symbol != nil
   end
 
+  def valid_move?(position, symbol)
+    position.between?(0, 8) && board[position] == ' '
+  end
+
+  private
+  
   def winning_symbol
-    winning_combinations = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], # rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], # columns
-      [0, 4, 8], [2, 4, 6] # diagonals
-    ]
-    winning_combinations.each do |combo| 
+    WINNING_COMBINATIONS.each do |combo| 
       first = board[combo[0]]
       if first != ' ' && 
           first == board[combo[1]] && 
@@ -46,9 +53,5 @@ class GameBoard
       end 
     end
     nil
-  end
-
-  def valid_move?(position, symbol)
-    position.between?(0, 8) && board[position] == ' '
   end
 end

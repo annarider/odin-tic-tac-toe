@@ -21,6 +21,8 @@ class Player
     position
   end
 
+  private
+  
   def choose_again
     puts "#{name}, invalid move. Choose your position again."
   end

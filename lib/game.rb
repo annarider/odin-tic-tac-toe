@@ -11,6 +11,19 @@ class Game
     puts "#{current_player.name} is going first and is assigned #{current_player.symbol}."
   end
   
+  def play
+    loop do
+      play_turn
+      board.show_board
+      break if board.game_over?
+      @current_player = reverse_turn
+    end
+    announce_end
+    play_again?
+  end
+
+  private 
+
   def create_players
     puts "What's the first player's name?"
     name1 = gets.chomp
@@ -27,17 +40,6 @@ class Game
   
   def randomize_symbols
     ['X', 'O'].shuffle
-  end
-
-  def play
-    loop do
-      play_turn
-      board.show_board
-      break if board.game_over?
-      @current_player = reverse_turn
-    end
-    announce_end
-    play_again?
   end
   
   def play_turn
