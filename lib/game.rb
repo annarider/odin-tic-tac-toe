@@ -81,7 +81,7 @@ class Game
     puts 'Play again? Enter y for yes (y): '
     gets.chomp.downcase == 'y'
   end
-  
+
   def reset
     @board = GameBoard.new
     @current_player = play_order
