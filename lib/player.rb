@@ -15,9 +15,9 @@ class Player
   def choose
     position = nil
     loop do
+      position = valid_input
       break if (0..8).include?(position)
 
-      position = valid_input
       choose_again
     end
     puts "#{name}, #{symbol}, chose position: #{position + 1}."
@@ -34,7 +34,8 @@ class Player
     puts "#{name}, it's your turn with #{symbol}. Choose your position between 1 and 9."
     begin
       Integer(gets.chomp) - 1
-    rescue StandardError
+    rescue ArgumentError, TypeError
+      # Only catch errors related to type conversion
       false
     end
   end
