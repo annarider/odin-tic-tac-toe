@@ -1,4 +1,6 @@
 class GameBoard
+  EMPTY_CELL = ' '
+  BOARD_SIZE = 9
   WINNING_COMBINATIONS = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], # rows
     [0, 3, 6], [1, 4, 7], [2, 5, 8], # columns
@@ -8,7 +10,7 @@ class GameBoard
   attr_accessor :board
 
   def initialize
-    @board = Array.new(9, ' ')
+    @board = Array.new(BOARD_SIZE, EMPTY_CELL)
   end
 
   def set_symbol(position, symbol)
@@ -42,7 +44,7 @@ class GameBoard
   end
 
   private
-  
+
   def winning_symbol
     WINNING_COMBINATIONS.each do |combo| 
       first = board[combo[0]]
