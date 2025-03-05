@@ -18,15 +18,11 @@ class Game
   end
 
   def play
-    loop do
-      play_turn
-      board.show_board
-      break if board.game_over?
-
-      @current_player = reverse_turn
+    play_round
+    while play_again?
+      reset
+      play_round
     end
-    announce_end
-    play_again?
   end
 
   private
@@ -47,6 +43,17 @@ class Game
 
   def randomize_symbols
     %w[X O].shuffle
+  end
+
+  def play_round
+    loop do
+      play_turn
+      board.show_board
+      break if board.game_over?
+
+      @current_player = reverse_turn
+    end
+    announce_end
   end
 
   def play_turn
@@ -72,10 +79,12 @@ class Game
 
   def play_again?
     puts 'Play again? Enter y for yes (y): '
-    return unless gets.chomp == 'y'
-
+    gets.chomp.downcase == 'y'
+  end
+  
+  def reset
     @board = GameBoard.new
     @current_player = play_order
-    play
+    puts "Let's play again. It's #{current_player.name}'s turn."
   end
 end
