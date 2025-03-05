@@ -54,12 +54,11 @@ class GameBoard
   private
 
   def winning_symbol
-    WINNING_COMBINATIONS.each do |combo|
-      first = board[combo[0]]
-      if first != ' ' &&
-         first == board[combo[1]] &&
-         first == board[combo[2]]
-        return first
+    WINNING_COMBINATIONS.each do |a, b, c|
+      if board[a] != EMPTY_CELL &&
+         board[a] == board[b] &&
+         board[a] == board[c]
+        return board[a]
       end
     end
     nil
