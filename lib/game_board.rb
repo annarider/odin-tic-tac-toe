@@ -1,3 +1,11 @@
+# frozen_string_literal: true
+
+# GameBoard represents the tic-tac-toe board.
+# It sets the positions with symbols and checks
+# if moves are valid.
+#
+# @example Creating a new game board
+#   board = GameBoard.new
 class GameBoard
   EMPTY_CELL = ' '
   BOARD_SIZE = 9
@@ -5,7 +13,7 @@ class GameBoard
     [0, 1, 2], [3, 4, 5], [6, 7, 8], # rows
     [0, 3, 6], [1, 4, 7], [2, 5, 8], # columns
     [0, 4, 8], [2, 4, 6] # diagonals
-  ]
+  ].freeze
 
   attr_accessor :board
 
@@ -18,13 +26,13 @@ class GameBoard
   end
 
   def show_board
-    puts  <<~TEXT 
-      #{board[0]} | #{board[1]} | #{board[2]} 
+    puts <<~TEXT
+      #{board[0]} | #{board[1]} | #{board[2]}
       ----------
       #{board[3]} | #{board[4]} | #{board[5]}
       ----------
       #{board[6]} | #{board[7]} | #{board[8]}
-      TEXT
+    TEXT
   end
 
   def game_over?
@@ -32,27 +40,27 @@ class GameBoard
   end
 
   def full?
-    board.all? { |element| element == 'X' || element == 'O' }
-  end   
+    board.all? { |element| %w[X O].include?(element) }
+  end
 
   def winner?
     winning_symbol != nil
   end
 
-  def valid_move?(position, symbol)
+  def valid_move?(position)
     position.between?(0, 8) && board[position] == ' '
   end
 
   private
 
   def winning_symbol
-    WINNING_COMBINATIONS.each do |combo| 
+    WINNING_COMBINATIONS.each do |combo|
       first = board[combo[0]]
-      if first != ' ' && 
-          first == board[combo[1]] && 
-          first == board[combo[2]] 
+      if first != ' ' &&
+         first == board[combo[1]] &&
+         first == board[combo[2]]
         return first
-      end 
+      end
     end
     nil
   end

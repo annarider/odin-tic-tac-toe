@@ -1,8 +1,14 @@
-require_relative 'game_board'
-require_relative 'player'
+# frozen_string_literal: true
 
+# Game represents the tic-tac-toe game logic.
+# It manages a play loop with turn taking.
+#
+# @example Creating a new game
+#   game = Game.new
 class Game
-  attr_accessor :board, :player1, :player2, :current_player 
+  require_relative 'game_board'
+  require_relative 'player'
+  attr_accessor :board, :player1, :player2, :current_player
 
   def initialize
     @board = GameBoard.new
@@ -10,19 +16,20 @@ class Game
     @current_player = play_order
     puts "#{current_player.name} is going first and is assigned #{current_player.symbol}."
   end
-  
+
   def play
     loop do
       play_turn
       board.show_board
       break if board.game_over?
+
       @current_player = reverse_turn
     end
     announce_end
     play_again?
   end
 
-  private 
+  private
 
   def create_players
     puts "What's the first player's name?"
@@ -33,15 +40,15 @@ class Game
     @player1 = Player.new(name1, symbols[0])
     @player2 = Player.new(name2, symbols[1])
   end
-  
+
   def play_order
     [player1, player2].sample
   end
-  
+
   def randomize_symbols
-    ['X', 'O'].shuffle
+    %w[X O].shuffle
   end
-  
+
   def play_turn
     position = current_player.choose
     until board.valid_move?(position, current_player.symbol)
@@ -59,16 +66,16 @@ class Game
     if board.winner?
       puts "Game over. The winner was #{current_player.name}."
     elsif board.full?
-      puts "Game over. No winner."
+      puts 'Game over. No winner.'
     end
   end
 
   def play_again?
     puts 'Play again? Enter y for yes (y): '
-    if gets.chomp == 'y'
-      @board = GameBoard.new
-      @current_player = play_order
-      play
-    end
+    return unless gets.chomp == 'y'
+
+    @board = GameBoard.new
+    @current_player = play_order
+    play
   end
 end
