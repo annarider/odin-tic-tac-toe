@@ -44,6 +44,16 @@ describe GameBoard do
           expect(game_board.game_over?).to be true
         end
       end
+      context 'when the board is empty' do
+        let(:empty_board) { Array.new(9, ' ') }
+        before do
+          allow(game_board).to receive(:board).and_return(empty_board)
+        end
+
+        it 'returns true' do
+          expect(game_board.game_over?).to be false
+        end
+      end
     end
 
   describe '#full?' do
