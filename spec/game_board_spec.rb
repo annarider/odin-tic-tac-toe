@@ -6,6 +6,45 @@ require_relative '../lib/game_board'
 
 describe GameBoard do
   subject(:game_board) { described_class.new }
+  
+    describe '#game_over?' do
+      context 'when the board has a winning combination on top row' do
+        let(:win_board) { ['X', 'X', 'X', 
+                           ' ', ' ', ' ', 
+                           ' ', ' ', ' '] }
+        before do
+          allow(game_board).to receive(:board).and_return(win_board)
+        end
+
+        it 'returns true' do
+          expect(game_board.game_over?).to be true
+        end
+      end
+      context 'when the board has a winning combination on middle column' do
+        let(:win_board) { ['X', 'O', 'X', 
+                           ' ', 'O', 'X', 
+                           'X', 'O', ' '] }
+        before do
+          allow(game_board).to receive(:board).and_return(win_board)
+        end
+
+        it 'returns true' do
+          expect(game_board.game_over?).to be true
+        end
+      end
+      context 'when the board has a winning combination on the diagonal' do
+        let(:win_board) { ['X', 'O', 'X', 
+                           ' ', 'X', 'X', 
+                           'X', 'O', 'X'] }
+        before do
+          allow(game_board).to receive(:board).and_return(win_board)
+        end
+
+        it 'returns true' do
+          expect(game_board.game_over?).to be true
+        end
+      end
+    end
 
   describe '#full?' do
     context 'when every position on the board has an X symbol' do
@@ -38,6 +77,5 @@ describe GameBoard do
         expect(game_board.full?).to be false
       end
     end
-
   end
 end
