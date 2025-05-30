@@ -50,8 +50,20 @@ describe GameBoard do
           allow(game_board).to receive(:board).and_return(empty_board)
         end
 
-        it 'returns true' do
+        it 'returns false' do
           expect(game_board.game_over?).to be false
+        end
+      end
+      context 'when the board is full with no winning combinations' do
+        let(:game_over_board) { ['X', 'O', 'X', 
+                                 'O', 'X', 'O', 
+                                 'X', 'O', 'O'] }
+        before do
+          allow(game_board).to receive(:board).and_return(game_over_board)
+        end
+
+        it 'returns true' do
+          expect(game_board.game_over?).to be true
         end
       end
     end
@@ -78,9 +90,11 @@ describe GameBoard do
       end
     end
     context 'when some positions on the board are empty' do
-      let(:part_full_board) { Array.new(9, %w[X O ' '].sample) }
+      let(:partially_full_board) { ['X', 'O', 'X', 
+                                    ' ', 'X', 'X', 
+                                    'X', 'O', 'X'] }
       before do
-        allow(game_board).to receive(:board).and_return(part_full_board)
+        allow(game_board).to receive(:board).and_return(partially_full_board)
       end
 
       it 'returns false' do
