@@ -55,9 +55,9 @@ describe GameBoard do
         end
       end
       context 'when the board is full with no winning combinations' do
-        let(:game_over_board) { ['X', 'O', 'X', 
-                                 'O', 'X', 'O', 
-                                 'X', 'O', 'O'] }
+        let(:game_over_board) { ['O', 'X', 'X', 
+                                 'X', 'X', 'O', 
+                                 'O', 'O', 'X'] }
         before do
           allow(game_board).to receive(:board).and_return(game_over_board)
         end
@@ -67,14 +67,14 @@ describe GameBoard do
         end
       end
     end
-
-  describe '#full?' do
+    
+    describe '#full?' do
     context 'when every position on the board has an X symbol' do
       let(:full_board) { Array.new(9, 'X') }
       before do
         allow(game_board).to receive(:board).and_return(full_board)
       end
-
+      
       it 'returns true' do
         expect(game_board.full?).to be true
       end
@@ -84,7 +84,7 @@ describe GameBoard do
       before do
         allow(game_board).to receive(:board).and_return(full_board)
       end
-
+      
       it 'returns true' do
         expect(game_board.full?).to be true
       end
@@ -96,9 +96,42 @@ describe GameBoard do
       before do
         allow(game_board).to receive(:board).and_return(partially_full_board)
       end
-
+      
       it 'returns false' do
         expect(game_board.full?).to be false
+      end
+    end
+  end
+  
+  describe '#winner?' do
+    context 'when there is a winning combination' do
+      let(:win_board) { Array.new(9, 'X') }
+      before do
+        allow(game_board).to receive(:board).and_return(win_board)
+      end
+      it 'returns true' do
+        expect(game_board.winner?).to be true
+      end
+    end
+    context 'when the board is empty' do
+      let(:empty_board) { Array.new(9, ' ') }
+      before do
+        allow(game_board).to receive(:board).and_return(empty_board)
+      end
+      it 'returns false' do
+        expect(game_board.winner?).to be false
+      end
+    end
+    context 'when the board is full with no winning combinations' do
+      let(:lose_board) { ['O', 'X', 'X', 
+                          'X', 'X', 'O', 
+                          'O', 'O', 'X'] }
+      before do
+        allow(game_board).to receive(:board).and_return(lose_board)
+      end
+    
+      it 'returns false' do
+        expect(game_board.winner?).to be false
       end
     end
   end
