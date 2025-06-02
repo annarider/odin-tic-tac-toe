@@ -13,7 +13,7 @@ describe Game do
         allow_any_instance_of(Game).to receive(:puts)
       end
 
-      it "creates a new game object" do
+      it 'creates a new game object' do
         expect(create_game).to respond_to(:play)
       end
     end
